@@ -1,0 +1,22 @@
+.Userpage1 {
+  background-color: #3D3E42;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .mic {
+    .Mic {
+      position: absolute;
+      right: 0;
+      bottom: 29px;}
+      .Mic:hover {
+        bottom: 39px;
+        cursor: pointer;
+      }
+
+  }
+
+}

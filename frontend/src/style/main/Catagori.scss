@@ -1,0 +1,70 @@
+.Catagori {
+    background-color: #3D3E42;
+    height: 100vh;
+
+    .Whatsong_2 {
+        padding-top: 44px;
+        padding-left: 71px;
+    }
+
+    .Catagori_1 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin-top: 158px;
+
+        .catagori {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 830px;
+            height: 590px;
+            background-color: white;
+            border-radius: 10px;
+
+            .Select {
+                font-size: 26px;
+                margin-bottom: 60px;
+            }
+
+            .select1 {
+                span {
+                    font-size: 20px;
+                }
+
+                .song_select {
+                    width: 675px;
+                    height: 44px;
+                    margin-top: 11px;
+                    select {
+                        width: 675px;
+                    }
+                }
+            }
+            .jajang{
+                width: 670px;
+                height: 90px;
+                border: 1px solid black;
+                border-radius: 10px;
+                margin-top: 10px;
+                .bal{
+                    width: 95px;
+                    height: 27px;
+                    background-color: #D9D9D9;
+                    border-radius: 20px;
+                    margin-top: 13px;
+                    margin-left: 19px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;      
+                    font-size: 14px;  
+                    .Button{
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
