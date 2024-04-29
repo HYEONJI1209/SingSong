@@ -1,6 +1,6 @@
 import React from "react"
 import { Routes, Route } from "react-router-dom";
-import { Signup, LandingPage,UserPage, Catagori,Manage} from "./index";
+import { Signup, LandingPage,UserPage, Catagori,Manage,Selectmusic} from "./index";
 
 const Main = () => {
     return (
@@ -9,6 +9,7 @@ const Main = () => {
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/UserPage" element={<UserPage />} />
                 <Route path="/Manage" element={<Manage />}/>
+                <Route path="/Selectmusic" element={<Selectmusic />}/>
                 <Route path="/Catagori" element={<Catagori />} />
                 <Route path="/signup" element={<Signup />} />
             </Routes>

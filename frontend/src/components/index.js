@@ -8,3 +8,5 @@ export { default as LandingPage } from "./main/LandingPage";
 export { default as UserPage } from "./main/UserPage";
 export { default as Catagori } from "./main/Catagori";
 export {default as Manage} from "./main/Manage";
+
+export {default as Selectmusic} from "./main/Selectmusic";
