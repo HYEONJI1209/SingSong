@@ -8,5 +8,9 @@ module.exports = app => {
     router.delete("/delete_song/:id", controller.SONG_DELETE);
     router.get("/get_song", controller.SONG_GET_ALL);
 
+
+    //찜기능
+    router.post("/pick_song", controller.AddPickSong);
+
     app.use('/api', router);
 };

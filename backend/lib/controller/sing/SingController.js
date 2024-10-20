@@ -1,5 +1,6 @@
 const database = require("../../Model");
 const songDB = database.SingaSongModel;
+const SignUp = database.SignUpDB;
 
 const SONG_REGISTRATION = async (req, res) => {
     const { title, singer, category, year } = req.body;
@@ -85,9 +86,43 @@ const SONG_GET_ALL = async (req, res) => {
     }
 };
 
+//노래의 찜 기능
+const AddPickSong = async (req, res) => {
+    const { userID, songID } = req.body;
+    console.log(req.body);
+
+    try {
+        const user = await SignUp.findByPk(userID);
+
+        if (!user) {
+            return res.status(404).json({ message: "사용자를 찾을 수 없습니다." });
+        }
+
+        // 기존의 pickSong 배열 가져오기
+        const existingPicks = user.pickSong || [];
+        
+        // 이미 찜한 노래인지 확인
+        if (existingPicks.includes(songID)) {
+            return res.status(400).json({ message: "이미 찜한 노래입니다." });
+        }
+
+        // 노래 ID를 pickSong 배열에 추가
+        existingPicks.push(songID);
+        
+        // 사용자 정보 업데이트
+        await user.update({ pickSong: existingPicks });
+
+        return res.status(200).json({ message: "노래가 성공적으로 찜되었습니다.", pickSong: existingPicks });
+    } catch (error) {
+        console.error("노래 찜 등록 중 오류 발생:", error);
+        return res.status(500).json({ message: "서버 오류가 발생했습니다." });
+    }
+};
+
 module.exports = {
     SONG_REGISTRATION,
     SONG_UPDATE,
     SONG_DELETE,
-    SONG_GET_ALL
+    SONG_GET_ALL,
+    AddPickSong
 };
