@@ -6,6 +6,7 @@ module.exports = app => {
     router.post("/song_registration", controller.SONG_REGISTRATION);
     router.put("/put_song", controller.SONG_UPDATE);
     router.delete("/delete_song/:id", controller.SONG_DELETE);
+    router.get("/get_song", controller.SONG_GET_ALL);
 
     app.use('/api', router);
 };
