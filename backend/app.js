@@ -8,6 +8,11 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
+// Pug 설정
+app.set('views', path.join(__dirname, 'views')); // views 디렉토리 경로 설정
+app.set('view engine', 'pug'); // Pug를 템플릿 엔진으로 설정
+app.engine('pug', require('pug').__express)
+
 // CORS 설정
 app.use(cors({
   origin: "http://localhost:3000",
@@ -42,6 +47,7 @@ app.use(bodyParser.json());
 
 // 라우터 파일을 가져옵니다.
 require('./lib/routes/login/SignUpRoutes')(app);
+require('./lib/routes/sing/SingRouter')(app);
 
 // 404 에러 핸들링
 app.use(function(req, res, next) {
