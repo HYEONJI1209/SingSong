@@ -45,7 +45,7 @@ const Manage = () => {
 
             <div className="search">
                 <div className="search1">
-                    <div>노래 제목   :</div>
+                    <div>노래 제목 :</div>
                     <input 
                         type="text" 
                         value={songTitle} 
