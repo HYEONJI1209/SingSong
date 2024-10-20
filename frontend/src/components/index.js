@@ -10,3 +10,6 @@ export { default as Catagori } from "./main/Catagori";
 export {default as Manage} from "./main/Manage";
 
 export {default as Selectmusic} from "./main/Selectmusic";
+
+export {default as Allsong} from "./main/Allsong";
+export {default as Allsongheart} from "./main/Allsongheart";
