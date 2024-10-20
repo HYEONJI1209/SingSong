@@ -73,6 +73,7 @@ const SONG_DELETE = async (req, res) => {
     }
 };
 
+//모든 노래 조회
 const SONG_GET_ALL = async (req, res) => {
     try {
         const songs = await songDB.findAll();
