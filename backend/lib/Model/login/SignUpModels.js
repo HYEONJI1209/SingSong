@@ -13,6 +13,10 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING,
             allowNull: false,
         },
+        pickSong:{
+            type: Sequelize.JSON,
+            allowNull: false,
+        }
     }, {
         freezeTableName: true
     })
