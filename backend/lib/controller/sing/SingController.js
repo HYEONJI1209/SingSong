@@ -1,20 +1,15 @@
 const database = require("../../Model");
-const signUp = database.SingaSongModel;
+const songDB = database.SingaSongModel;
+const SignUp = database.SignUpDB;
 
 const SONG_REGISTRATION = async (req, res) => {
-    const { title, singer, category, year } = req.body; // 요청 본문에서 데이터 추출
+    const { title, singer, category, year } = req.body;
     console.log(req.body);
 
     try {
-        // // 유효성 검사
-        // if (!title || !filepath || !singer || !category || !year) {
-        //     return res.status(400).json({ message: "모든 필드를 입력해야 합니다." });
-        // }
-
         // 새로운 노래 생성
-        const newSong = await signUp.create({
+        const newSong = await songDB.create({
             title,
-            // filepath,
             singer,
             category,
             year,
@@ -27,5 +22,107 @@ const SONG_REGISTRATION = async (req, res) => {
     }
 };
 
+//노래 수정
+const SONG_UPDATE = async (req, res) => {
+    const { id, title, singer, category, year } = req.body;
+    console.log(req.body);
 
-module.exports = { SONG_REGISTRATION };
+    try {
+        // 노래를 ID로 찾기
+        const songToUpdate = await songDB.findByPk(id);
+
+        if (!songToUpdate) {
+            return res.status(404).json({ message: "노래를 찾을 수 없습니다." });
+        }
+
+        // 노래 정보 업데이트
+        const updatedSong = await songToUpdate.update({
+            title: title || songToUpdate.title,
+            singer: singer || songToUpdate.singer,
+            category: category || songToUpdate.category,
+            year: year || songToUpdate.year,
+        });
+
+        return res.status(200).json({ message: "노래가 성공적으로 수정되었습니다.", song: updatedSong });
+    } catch (error) {
+        console.error("노래 수정 중 오류 발생:", error);
+        return res.status(500).json({ message: "서버 오류가 발생했습니다." });
+    }
+};
+
+
+//노래 삭제
+const SONG_DELETE = async (req, res) => {
+    const { id } = req.params;
+    console.log(`삭제할 노래 ID: ${id}`);
+
+    try {
+        // 노래를 ID로 찾기
+        const songToDelete = await songDB.findByPk(id);
+
+        if (!songToDelete) {
+            return res.status(404).json({ message: "노래를 찾을 수 없습니다." });
+        }
+
+        // 노래 삭제
+        await songToDelete.destroy();
+
+        return res.status(200).json({ message: "노래가 성공적으로 삭제되었습니다." });
+    } catch (error) {
+        console.error("노래 삭제 중 오류 발생:", error);
+        return res.status(500).json({ message: "서버 오류가 발생했습니다." });
+    }
+};
+
+//모든 노래 조회
+const SONG_GET_ALL = async (req, res) => {
+    try {
+        const songs = await songDB.findAll();
+
+        return res.status(200).json({ message: "모든 노래 데이터를 가져왔습니다.", songs });
+    } catch (error) {
+        console.error("모든 노래 데이터 가져오는 중 오류 발생:", error);
+        return res.status(500).json({ message: "서버 오류가 발생했습니다." });
+    }
+};
+
+//노래의 찜 기능
+const AddPickSong = async (req, res) => {
+    const { userID, songID } = req.body;
+    console.log(req.body);
+
+    try {
+        const user = await SignUp.findByPk(userID);
+
+        if (!user) {
+            return res.status(404).json({ message: "사용자를 찾을 수 없습니다." });
+        }
+
+        // 기존의 pickSong 배열 가져오기
+        const existingPicks = user.pickSong || [];
+        
+        // 이미 찜한 노래인지 확인
+        if (existingPicks.includes(songID)) {
+            return res.status(400).json({ message: "이미 찜한 노래입니다." });
+        }
+
+        // 노래 ID를 pickSong 배열에 추가
+        existingPicks.push(songID);
+        
+        // 사용자 정보 업데이트
+        await user.update({ pickSong: existingPicks });
+
+        return res.status(200).json({ message: "노래가 성공적으로 찜되었습니다.", pickSong: existingPicks });
+    } catch (error) {
+        console.error("노래 찜 등록 중 오류 발생:", error);
+        return res.status(500).json({ message: "서버 오류가 발생했습니다." });
+    }
+};
+
+module.exports = {
+    SONG_REGISTRATION,
+    SONG_UPDATE,
+    SONG_DELETE,
+    SONG_GET_ALL,
+    AddPickSong
+};

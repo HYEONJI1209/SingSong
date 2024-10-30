@@ -4,6 +4,7 @@ const Sequelize = require("sequelize");
 const SignUpDB = require("./login/SignUpModels");
 const ManagerLoginDB = require("./login/ManagerLoginModels");
 const SingaSongModel = require("./Sing/SignaSongModel");
+const CategoryModel = require("./Sing/CategoryModel");
 
 //db 연결 정보 가져오기
 const { ExdbConfig } = require("../config/config");
@@ -26,5 +27,6 @@ database.Node_db = Node_db;
 database.SignUpDB = SignUpDB(Node_db, Sequelize);
 database.ManagerLoginDB = ManagerLoginDB(Node_db, Sequelize);
 database.SingaSongModel = SingaSongModel(Node_db, Sequelize);
+database.CategoryModel = CategoryModel(Node_db, Sequelize);
 
 module.exports = database;
