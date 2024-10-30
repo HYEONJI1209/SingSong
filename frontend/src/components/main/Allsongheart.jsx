@@ -23,6 +23,7 @@ const Allsong = () => {
 
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [selectedAges, setSelectedAges] = useState([]);
+    const [likedSongs, setLikedSongs] = useState([]);
 
     const handleCategorySelect = (e) => {
         const value = e.target.value;
@@ -46,14 +47,25 @@ const Allsong = () => {
         });
     };
 
-    // X버튼을 눌렀을 때 해당 카테고리를 제거하는 함수
+    // 카테고리 제거 함수
     const removeCategory = (category) => {
         setSelectedCategories((prevCategories) =>
             prevCategories.filter((item) => item !== category)
         );
     };
 
-    // 선택된 카테고리와 연령대의 한글 이름을 찾는 함수
+    // 찜 기능을 위한 함수
+    const toggleLike = (song) => {
+        setLikedSongs((prevLikedSongs) => {
+            if (prevLikedSongs.includes(song)) {
+                return prevLikedSongs.filter((likedSong) => likedSong !== song);
+            } else {
+                return [...prevLikedSongs, song];
+            }
+        });
+    };
+
+    // 한글 이름 변환 함수
     const getCategoryName = (value) => {
         const category = categoryList.find((item) => item.value === value);
         return category ? category.name : '';
@@ -72,7 +84,7 @@ const Allsong = () => {
             </div>
 
             <div className="fillter">
-                <div className="word2">전체 노래에서 검색하기</div>
+                <div className="word2">전체 노래</div>
             </div>
             <div className="catabox">
                 <div className="select1">
@@ -86,18 +98,16 @@ const Allsong = () => {
                         </select>
                     </div>
                     <div className="selected_categories">
-                        {/* 선택된 카테고리 리스트 */}
                         {selectedCategories.map((category) => (
-                            <span 
-                                key={category} 
-                                className="selected_catesong" 
+                            <span
+                                key={category}
+                                className="selected_catesong"
                                 style={{ marginRight: '8px', padding: '5px', backgroundColor: '#f0f0f0', borderRadius: '5px', display: 'inline-flex', alignItems: 'center' }}
                             >
                                 {getCategoryName(category)}
-                                {/* X 버튼 */}
                                 <button
                                     onClick={() => removeCategory(category)}
-                                    style={{ marginLeft: '10px', cursor: 'pointer', background: 'transparent', border: 'none', color: 'black'}}
+                                    style={{ marginLeft: '10px', cursor: 'pointer', background: 'transparent', border: 'none', color: 'black' }}
                                 >
                                     X
                                 </button>
@@ -118,9 +128,7 @@ const Allsong = () => {
                     <div className="selected_ages">
                         <span>{selectedAges.map(getAgeName).join(' ')}</span>
                     </div>
-                    <div>
-                        제목 및 가수검색
-                    </div>
+                    <div>제목 및 가수 검색</div>
                 </div>
             </div>
 
@@ -130,12 +138,47 @@ const Allsong = () => {
                     <div className="no2">노래 제목</div>
                     <div className="no3">카테고리</div>
                     <div className="no4">가수</div>
+                    <div className="no5"></div>
+
                 </div>
+                {/* 예시 노래 리스트 */}
                 <div className="song2">
                     <div className="no">01.</div>
                     <div className="no2">눈</div>
                     <div className="no3">발라드</div>
                     <div className="no4">정준일</div>
+                    <div className="no5">
+                        <button
+                            onClick={() => toggleLike("눈")}
+                            style={{
+                                background: "none",
+                                border: "none",
+                                cursor: "pointer",
+                                fontSize: "24px" // 하트 크기를 키우는 스타일
+                            }}
+                        >
+                            {likedSongs.includes("눈") ? "❤️" : "🤍"}
+                        </button>
+                    </div>
+                </div>
+                <div className="song2">
+                    <div className="no">02.</div>
+                    <div className="no2">달</div>
+                    <div className="no3">R&B</div>
+                    <div className="no4">스트레이</div>
+                    <div className="no5">
+                        <button
+                            onClick={() => toggleLike("달")}
+                            style={{
+                                background: "none",
+                                border: "none",
+                                cursor: "pointer",
+                                fontSize: "24px" // 하트 크기를 키우는 스타일
+                            }}
+                        >
+                            {likedSongs.includes("달") ? "❤️" : "🤍"}
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
