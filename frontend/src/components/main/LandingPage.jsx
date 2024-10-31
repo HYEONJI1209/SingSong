@@ -54,7 +54,7 @@ const LandingPage = () => {
                             로그인
                         </div>
                         <div className="respass">
-                            <Link to="/signup">회원가입</Link>&nbsp;/&nbsp;<span>아이디 찾기</span>&nbsp;/&nbsp;<span>비밀번호 찾기</span>
+                            <Link to="/signup">회원가입</Link>
                         </div>
                     </div>
                 </div>
