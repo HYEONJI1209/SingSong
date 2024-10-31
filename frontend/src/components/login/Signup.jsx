@@ -25,7 +25,7 @@ const Signup = () => {
             const response = await SignupService(formData.userID, formData.userEmail, formData.userPW);
             console.log(response.data);
 
-            if (response.data.success) {
+            if (response.data && response.data.message === "SUCCESS") {
                 navigate('/');
             } else {
                 alert(response.data.message);
