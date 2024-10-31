@@ -16,11 +16,14 @@ const LandingPage = () => {
             });
 
             if (response.status === 200) {
-                navigate('/UserPage');
+                if (response.data.message === "관리자입니다.") {
+                    navigate('/manage');
+                } else {
+                    navigate('/UserPage');
+                }
             } else {
                 alert(response.data.message);
             }
-
         } catch (error) {
             console.error("로그인 요청 중 오류 발생:", error);
             alert("로그인 중 문제가 발생했습니다.");
@@ -51,7 +54,7 @@ const LandingPage = () => {
                             로그인
                         </div>
                         <div className="respass">
-                            <Link to="/signup">회원가입</Link>&nbsp;/&nbsp;<span>아이디 찾기</span>&nbsp;/&nbsp;<span>비밀번호 찾기</span>
+                            <Link to="/signup">회원가입</Link>
                         </div>
                     </div>
                 </div>
