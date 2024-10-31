@@ -17,7 +17,7 @@ const Manage = () => {
         };
 
         try {
-            const response = await fetch("/song_registration", {
+            const response = await fetch("/api/song_registration", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

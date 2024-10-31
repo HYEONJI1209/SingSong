@@ -1,6 +1,7 @@
-const database = require("../../models");
+const database = require("../../Model");
 const signUp = database.SignUpDB;
 const ManagerDB = database.ManagerLoginDB;
+const bcrypt = require('bcrypt');
 
 // 로그인
 const login = async (req, res) => {
@@ -11,8 +12,8 @@ const login = async (req, res) => {
         // 관리자 확인
         const manager = await ManagerDB.findOne({ where: { managerID: userID } });
         if (manager) {
-            // 관리자 로그인 성공
-            if (manager.managerPW === userPW) {
+            const isPasswordValid = await bcrypt.compare(userPW, manager.managerPW);
+            if (isPasswordValid) {
                 return res.status(200).json({ message: "관리자입니다." });
             } else {
                 return res.status(401).json({ message: "비밀번호가 올바르지 않습니다." });
@@ -22,8 +23,8 @@ const login = async (req, res) => {
         // 일반 사용자 확인
         const user = await signUp.findOne({ where: { userID } });
         if (user) {
-            // 사용자 로그인 성공
-            if (user.userPW === userPW) {
+            const isPasswordValid = await bcrypt.compare(userPW, user.userPW);
+            if (isPasswordValid) {
                 return res.status(200).json({ message: "로그인 완료" });
             } else {
                 return res.status(401).json({ message: "비밀번호가 올바르지 않습니다." });

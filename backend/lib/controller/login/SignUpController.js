@@ -7,6 +7,7 @@ const SignUpController = async (req, res) => {
         userID: req.body.userID,
         userPW: bcrypt.hashSync(req.body.userPW, 10),
         userEmail: req.body.userEmail,
+        pickSong: ""
     }
 
     signUp.create(userData)
