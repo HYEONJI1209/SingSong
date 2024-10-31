@@ -16,11 +16,14 @@ const LandingPage = () => {
             });
 
             if (response.status === 200) {
-                navigate('/UserPage');
+                if (response.data.message === "관리자입니다.") {
+                    navigate('/manage');
+                } else {
+                    navigate('/UserPage');
+                }
             } else {
                 alert(response.data.message);
             }
-
         } catch (error) {
             console.error("로그인 요청 중 오류 발생:", error);
             alert("로그인 중 문제가 발생했습니다.");

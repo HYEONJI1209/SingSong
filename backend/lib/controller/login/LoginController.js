@@ -10,10 +10,11 @@ const login = async (req, res) => {
 
     try {
         // 관리자 확인
-        const manager = await ManagerDB.findOne({ where: { managerID: userID } });
+        const manager = await ManagerDB.findOne({ where: { ManagerID: userID } });
         if (manager) {
-            const isPasswordValid = await bcrypt.compare(userPW, manager.managerPW);
-            if (isPasswordValid) {
+            console.log("DB에서 찾은 관리자:", manager);
+            // 해싱되지 않은 관리자 비밀번호 확인
+            if (manager.ManagerPW === userPW) {
                 return res.status(200).json({ message: "관리자입니다." });
             } else {
                 return res.status(401).json({ message: "비밀번호가 올바르지 않습니다." });
@@ -21,16 +22,18 @@ const login = async (req, res) => {
         }
 
         // 일반 사용자 확인
-        const user = await signUp.findOne({ where: { userID } });
+        const user = await signUp.findOne({ where: { userID: userID } });
         if (user) {
-            const isPasswordValid = await bcrypt.compare(userPW, user.userPW);
-            if (isPasswordValid) {
-                return res.status(200).json({ message: "로그인 완료" });
+            // 해싱된 사용자 비밀번호 비교
+            const isMatch = await bcrypt.compare(userPW, user.userPW);
+            if (isMatch) {
+                return res.status(200).json({ message: "일반 사용자입니다." });
             } else {
                 return res.status(401).json({ message: "비밀번호가 올바르지 않습니다." });
             }
         }
 
+        // 사용자 존재하지 않음
         return res.status(404).json({ message: "사용자를 찾을 수 없습니다." });
     } catch (error) {
         console.error("로그인 중 오류 발생:", error);
