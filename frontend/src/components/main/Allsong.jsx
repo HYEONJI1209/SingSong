@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Whatsong_2 } from '../../asset/img/index';
+import { useNavigate } from "react-router-dom";
 
 const Allsong = () => {
     const categoryList = [
@@ -12,7 +13,7 @@ const Allsong = () => {
         { value: "트로트", name: "트로트" },
         { value: "락", name: "락" },
     ];
-
+    const navigate = useNavigate();
     const [allSongs, setAllSongs] = useState([]);
     const [filteredSongs, setFilteredSongs] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("카테고리");
@@ -61,11 +62,18 @@ const Allsong = () => {
         setSearchTerm(event.target.value);
     };
 
+    const handleLogout = () => {
+        localStorage.removeItem('login');
+        navigate('/');
+    };
+
+
     return (
         <div className="Allsong">
             <div className="topword">
                 <div><img className="Whatsong_2" alt="song" src={Whatsong_2} /></div>
                 {/* <div className="word">My page</div> */}
+                <span onClick={handleLogout} style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}>로그아웃</span>
             </div>
 
             <div className="fillter">

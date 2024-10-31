@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Selecemusic = () => {
     const [musicList, setMusicList] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchMusic = async () => {
@@ -30,10 +32,16 @@ const Selecemusic = () => {
         }
     };
 
+    const handleLogout = () => {
+        localStorage.removeItem('login');
+        navigate('/');
+    };
+
     return (
         <div className="Selectmusic">
             <div className="Headersel">
                 <div className="music">등록된 음악</div>
+                <span onClick={handleLogout} style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}>로그아웃</span>
             </div>
             <table className="table">
                 <thead>

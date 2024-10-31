@@ -16,8 +16,13 @@ const LandingPage = () => {
             });
 
             if (response.status === 200) {
+                localStorage.setItem('login', JSON.stringify({
+                    userId: userId,
+                    isAdmin: response.data.message === "관리자입니다."
+                }));
+
                 if (response.data.message === "관리자입니다.") {
-                    navigate('/manage');
+                    navigate('/Manage');
                 } else {
                     navigate('/UserPage');
                 }

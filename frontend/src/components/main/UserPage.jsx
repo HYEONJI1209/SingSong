@@ -1,10 +1,19 @@
 import React from "react";
 import { Whatsong_1, Mic } from '../../asset/img/index';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const UserPage = () => {
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.removeItem('login');
+        navigate('/');
+    };
+
     return (
         <div className="Userpage1">
+                            <span onClick={handleLogout} style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}>로그아웃</span>
+
             <img className='Whatsong' alt='Whatsong_1' src={Whatsong_1} />
             <div className="mic">
                 <Link to="/Allsong">

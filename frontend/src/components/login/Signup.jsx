@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import { SignupService } from "../../services/login/SignupService";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
-    // 상태 변수 정의 및 초기화
     const [formData, setFormData] = useState({
         userID: '',
         userPW: '',
         userEmail: ''
     });
 
-    // 입력 필드 값 변경 핸들러
+    const navigate = useNavigate();
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
-            ...formData, //spread 연산자 ...사용
+            ...formData,
             [name]: value
         });
     };
@@ -21,12 +22,17 @@ const Signup = () => {
     // 회원가입 처리 핸들러
     const handleSign = async () => {
         try {
-            // 회원가입 서비스 호출 및 응답 처리
             const response = await SignupService(formData.userID, formData.userEmail, formData.userPW);
             console.log(response.data);
+
+            if (response.data.success) {
+                navigate('/');
+            } else {
+                alert(response.data.message);
+            }
         } catch (error) {
-            // 오류 처리
             console.error('Error:', error);
+            alert("회원가입 중 오류가 발생했습니다.");
         }
     };
 
