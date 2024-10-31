@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
-<<<<<<< HEAD
 import axios from "axios";
-=======
->>>>>>> d59844da2e587501f2b6ef17b301ed9888920879
 
 const Selecemusic = () => {
     const [musicList, setMusicList] = useState([]);
 
     useEffect(() => {
-<<<<<<< HEAD
         const fetchMusic = async () => {
             try {
                 const response = await axios.get('/api/get_song');
@@ -34,14 +30,6 @@ const Selecemusic = () => {
         }
     };
 
-=======
-        fetch("/get_song")  // 백엔드의 엔드포인트에 맞게 수정
-            .then(response => response.json())
-            .then(data => setMusicList(data))
-            .catch(error => console.error("Error fetching music data:", error));
-    }, []);
-
->>>>>>> d59844da2e587501f2b6ef17b301ed9888920879
     return (
         <div className="Selectmusic">
             <div className="Headersel">
@@ -54,7 +42,6 @@ const Selecemusic = () => {
                         <th className="td2">노래 제목</th>
                         <th className="td3">카테고리</th>
                         <th className="td4">가수</th>
-<<<<<<< HEAD
                         <th className="td5">작업</th>
                     </tr>
                 </thead>
@@ -78,19 +65,6 @@ const Selecemusic = () => {
                             <td colSpan="5" className="td1">등록된 음악이 없습니다.</td>
                         </tr>
                     )}
-=======
-                    </tr>
-                </thead>
-                <tbody>
-                    {musicList.map((music, index) => (
-                        <tr key={index} className="tr1">
-                            <td className="td1">{index + 1}.</td>
-                            <td className="td2">{music.title}</td>
-                            <td className="td3">{music.category}</td>
-                            <td className="td4">{music.singer}</td>
-                        </tr>
-                    ))}
->>>>>>> d59844da2e587501f2b6ef17b301ed9888920879
                 </tbody>
             </table>
         </div>
