@@ -1,0 +1,116 @@
+.Allsong {
+    background-color: #3D3E42;
+    height: 100vh;
+
+    .topword {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 49px;
+        padding-left: 65px;
+        padding-right: 48px;
+
+        .word {
+            font: 20px;
+            font-weight: bold;
+            color: white;
+        }
+    }
+
+    .fillter {
+        margin-top: 56px;
+        margin-left: 68px;
+
+        .word2 {
+            font: 20px;
+            font-weight: bold;
+            color: white;
+        }
+    }
+
+    .catabox {
+        background-color: #F5F5F5;
+        border-radius: 10px;
+        margin-left: 68px;
+        margin-right: 68px;
+        margin-top: 10px;
+        height: 90px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .select1 {
+            display: flex;
+            margin-left: 40px;
+        }
+        .selected_categories{
+            gap: 16px;
+            margin-left: 40px;
+        .selected_catesong {
+            background-color: #D9D9D9;
+        }
+    }
+
+        .select2 {
+            display: flex;
+            margin-right: 30px;
+        }
+    }
+
+    .Song {
+        margin-top: 50px;
+
+        .song1 {
+            display: flex;
+            font-size: 20px;
+            color: white;
+
+            .no {
+                margin-left: 90px;
+                width: 30%;
+            }
+
+            .no2 {
+                width: 35%;
+            }
+
+            .no3 {
+                width: 10%;
+            }
+
+
+        }
+
+        .song1:hover {
+            border-bottom: 1px solid white;
+        }
+
+        .song2 {
+            display: flex;
+            font-size: 20px;
+            color: white;
+            margin-top: 60px;
+
+            .no {
+                margin-left: 90px;
+                width: 30%;
+            }
+
+            .no2 {
+                width: 35%;
+            }
+
+            .no3 {
+                width: 10%;
+            }
+            .no4{
+                width: 10%;
+            }
+
+        }
+
+        .song2:hover {
+            border-bottom: 1px solid white;
+        }
+    }
+
+}
