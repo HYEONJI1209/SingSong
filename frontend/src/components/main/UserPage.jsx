@@ -12,8 +12,7 @@ const UserPage = () => {
 
     return (
         <div className="Userpage1">
-                            <span onClick={handleLogout} style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}>로그아웃</span>
-
+            <span onClick={handleLogout} style={{ cursor: "pointer", color: "white", textDecoration: "underline" }}>로그아웃</span>
             <img className='Whatsong' alt='Whatsong_1' src={Whatsong_1} />
             <div className="mic">
                 <Link to="/Allsong">

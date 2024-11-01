@@ -3,7 +3,7 @@ const mysql = require("mysql2");
 const ExdbConfig = {
     host: "localhost",
     user: "root",
-    password: "1209",
+    password: "0131",
     database: "singdb",
     dialect: "mysql",
     timezone: "+09:00",

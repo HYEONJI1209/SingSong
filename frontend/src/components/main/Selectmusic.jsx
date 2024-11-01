@@ -41,7 +41,7 @@ const Selecemusic = () => {
         <div className="Selectmusic">
             <div className="Headersel">
                 <div className="music">등록된 음악</div>
-                <span onClick={handleLogout} style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}>로그아웃</span>
+                <span onClick={handleLogout} style={{ cursor: "pointer", color: "white", textDecoration: "underline" }}>로그아웃</span>
             </div>
             <table className="table">
                 <thead>
@@ -60,9 +60,9 @@ const Selecemusic = () => {
                                 <td className="td1">{index + 1}.</td>
                                 <td className="td2">{music.title}</td>
                                 <td className="td3">{music.category}</td>
-                                <td className="td4">{music.artist}</td>
+                                <td className="td4">{music.singer}</td>
                                 <td className="td5">
-                                    <button onClick={() => handleDelete(music.id)}>
+                                    <button className="button" onClick={() => handleDelete(music.id)}>
                                         삭제
                                     </button>
                                 </td>

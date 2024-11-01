@@ -10,6 +10,12 @@ const Manage = () => {
     const username = loginInfo ? loginInfo.userId : "사용자";
 
     const handleSubmit = async () => {
+
+        if (!songTitle || !singer || !category || !year){
+            alert("모든 필드를 채워주세요.");
+            return;
+        }
+        
         const songData = {
             title: songTitle,
             singer: singer,
@@ -49,12 +55,19 @@ const Manage = () => {
     return (
         <div className="Manage">
             <div className="song1">노래 등록</div>
-            <span>{username}님, 반갑습니다!</span>
-            <span onClick={handleLogout} style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}>로그아웃</span>
-            <div className="selectsong">
-                <button onClick={() => setCategory("힙합")} className={category === "힙합" ? "active" : ""}>힙합</button>
-                <button onClick={() => setCategory("발라드")} className={category === "발라드" ? "active" : ""}>발라드</button>
+            <div className="name">
+            <span className="username">{username}님, 반갑습니다!</span>
+            <span onClick={handleLogout} style={{ cursor: "pointer", color: "white", textDecoration: "underline" }}>로그아웃</span>
             </div>
+            <div className="selectsong">
+    <button onClick={() => setCategory("힙합")} className={`hiphop ${category === "힙합" ? "active" : ""}`}>힙합</button>
+    <button onClick={() => setCategory("발라드")} className={`ballad ${category === "발라드" ? "active" : ""}`}>발라드</button>
+    <button onClick={() => setCategory("재즈")} className={`jazz ${category === "재즈" ? "active" : ""}`}>재즈</button>
+    <button onClick={() => setCategory("R&B")} className={`rb ${category === "R&B" ? "active" : ""}`}>R&B</button>
+    <button onClick={() => setCategory("댄스")} className={`dance ${category === "댄스" ? "active" : ""}`}>댄스</button>
+    <button onClick={() => setCategory("동요")} className={`kids ${category === "동요" ? "active" : ""}`}>동요</button>
+</div>
+
 
             <div className="search">
                 <div className="search1">

@@ -1,0 +1,51 @@
+.signup{
+    background-color: #E9F0FF;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .textpage{
+        background-color: white;
+        width: 690px;
+        height: 500px;
+        .img{
+            margin-left: 170px;
+            margin-top: 20px;
+        }
+        .userid{
+            margin-top: 51px;
+            margin-left: 90px;
+        }
+        .userpass{
+            margin-top: 25px;
+            margin-left: 90px;
+        }
+        .useremail{
+            margin-top: 25px;
+            margin-left: 90px;
+        }
+        .inputtype {
+            margin-top: 13px;
+            margin-left: 90px;
+            width: 500px;
+            border-bottom: solid 1px black;
+            input {
+                border: none !important;
+                outline: none !important;
+                box-shadow: none !important;
+            }
+        }
+        
+        .button{
+            margin-top: 50px;
+            margin-left: 210px;
+            width: 240px;
+            height: 50px;
+            background-color: #5484FF;
+            color: white;
+            border-radius: 20px;
+            border: none;
+            font-size: 20px;
+        }
+    }
+}    

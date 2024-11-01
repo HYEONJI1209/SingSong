@@ -73,7 +73,7 @@ const Allsong = () => {
             <div className="topword">
                 <div><img className="Whatsong_2" alt="song" src={Whatsong_2} /></div>
                 {/* <div className="word">My page</div> */}
-                <span onClick={handleLogout} style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}>로그아웃</span>
+                <span onClick={handleLogout} style={{ cursor: "pointer", color: "white", textDecoration: "underline" }}>로그아웃</span>
             </div>
 
             <div className="fillter">
@@ -113,7 +113,7 @@ const Allsong = () => {
                         <div className="no">{index + 1}.</div>
                         <div className="no2">{song.title}</div>
                         <div className="no3">{song.category}</div>
-                        <div className="no4">{song.artist}</div>
+                        <div className="no4">{song.singer}</div>
                     </div>
                 ))}
             </div>
