@@ -12,12 +12,15 @@ const Allsong = () => {
         { value: "재즈", name: "재즈" },
         { value: "트로트", name: "트로트" },
         { value: "락", name: "락" },
+        { value: "동요", name: "동요" },
     ];
     const navigate = useNavigate();
     const [allSongs, setAllSongs] = useState([]);
     const [filteredSongs, setFilteredSongs] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("카테고리");
     const [searchTerm, setSearchTerm] = useState("");
+    const [likedSongs, setLikedSongs] = useState([]);
+
 
     useEffect(() => {
         getSongs();
@@ -52,7 +55,7 @@ const Allsong = () => {
         });
         setFilteredSongs(filtered);
     };
-    
+
 
     const handleCategorySelect = (event) => {
         setSelectedCategory(event.target.value);
@@ -66,6 +69,17 @@ const Allsong = () => {
         localStorage.removeItem('login');
         navigate('/');
     };
+
+    const toggleLike = (songTitle) => {
+        if (likedSongs.includes(songTitle)) {
+            // 이미 좋아요한 노래이면 제거
+            setLikedSongs(likedSongs.filter(title => title !== songTitle));
+        } else {
+            // 좋아요하지 않은 노래이면 추가
+            setLikedSongs([...likedSongs, songTitle]);
+        }
+    };
+
 
 
     return (
@@ -107,6 +121,7 @@ const Allsong = () => {
                     <div className="no2">노래 제목</div>
                     <div className="no3">카테고리</div>
                     <div className="no4">가수</div>
+                    <div className="no5"></div>
                 </div>
                 {filteredSongs.map((song, index) => (
                     <div className="song2" key={index}>
@@ -114,8 +129,22 @@ const Allsong = () => {
                         <div className="no2">{song.title}</div>
                         <div className="no3">{song.category}</div>
                         <div className="no4">{song.singer}</div>
+                        <div className="">
+                            <button
+                                onClick={() => toggleLike(song.title)}
+                                style={{
+                                    background: "none",
+                                    border: "none",
+                                    cursor: "pointer",
+                                    fontSize: "24px" // 하트 크기를 키우는 스타일
+                                }}
+                            >
+                                {likedSongs.includes(song.title) ? "❤️" : "🤍"}
+                            </button>
+                        </div>
                     </div>
                 ))}
+
             </div>
         </div>
     );
